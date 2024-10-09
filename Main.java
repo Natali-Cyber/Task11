@@ -8,7 +8,7 @@ public class Main {
         System.out.println("-------------------------------------------------");
 
         // Проверяем валидность телефонных номеров
-        String[] testPhones = {
+        validatePhoneNumbers(new String[]{
                 "+123-4567890123",
                 "+12 3456789012",
                 "+1234567890",
@@ -16,27 +16,20 @@ public class Main {
                 "+1-234-567-8901", // Неверный
                 "+12345678", // Неверный, слишком короткий
                 "+12345678901234" // Неверный, слишком длинный
-        };
-
-        for (String phone : testPhones) {
-            boolean isValid = PhoneValidator.isValidPhone(phone);
-            System.out.println(phone + " : " + (isValid ? "Валидный" : "Невалидный"));
-        }
+        });
 
         System.out.println("-------------------------------------------------");
 
         // Удаляем буквы и пробелы из примера текста
         String sampleText = "Привет, это пример текста 123!";
-        String result = removeLettersAndSpaces(sampleText);
-        // Выводим результат
-        printResult(result); // Ожидаемый вывод: "123!"
+        String result = TextProcessor.removeLettersAndSpaces(sampleText);
+        TextProcessor.printResult(result); // Ожидаемый вывод: "123!"
     }
 
-    public static String removeLettersAndSpaces(String text) {
-        return text.replaceAll("[\\p{L}\\s]", ""); // Удаляет буквы и пробелы
-    }
-
-    public static void printResult(String result) {
-        System.out.println(result); // Вывод результата
+    private static void validatePhoneNumbers(String[] testPhones) {
+        for (String phone : testPhones) {
+            boolean isValid = PhoneValidator.isValidPhone(phone);
+            System.out.println(phone + " : " + (isValid ? "Валидный" : "Невалидный"));
+        }
     }
 }
